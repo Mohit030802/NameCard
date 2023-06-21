@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const ResumeLayout = ({name,age,gender,description,img,verified,id}) => {
-  
+const ResumeLayout = ({name,age,gender,description,img,verified,id,onDownload,onStop}) => {
+  const [playing,setplaying]=useState(true);
+  function handleClick(e){
+    e.preventDefault();
+    if(playing) onDownload();
+    else onStop();
+    setplaying(!playing);
+  }
   let nameJSX
   if(verified){
 
@@ -22,7 +28,7 @@ const ResumeLayout = ({name,age,gender,description,img,verified,id}) => {
         <br />
 
 
-          <button className='flex bg-black rounded-md text-white m-2 p-2 justify-center items-center text-center mt-3'>Download</button>
+          <button className='flex bg-black rounded-md text-white m-2 p-2 justify-center items-center text-center mt-3' onClick={handleClick}>Download</button>
         </div>
 
       

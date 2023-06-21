@@ -1,6 +1,9 @@
 import React from 'react'
 
+
 const ResumeForm = () => {
+  
+
 
   return (
     <div>
@@ -28,7 +31,7 @@ const ResumeForm = () => {
                 <label className='block text-gray-700 font-bold'>Description</label>
                 <textarea type="text" className='appearance-none leading-tight focus:outline-none focus:shadow-outline border rounded w-full py-2 px-3' placeholder='Tell Us about Yourself'/>
             </div>
-
+          <button className='flex justify-center items-center bg-black text-white rounded-md p-2' >Submit</button>
         </form>
       </div>
     </div>
