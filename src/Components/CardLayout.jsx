@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const ResumeLayout = ({name,age,gender,description,img,verified,id,onDownload,onStop}) => {
+const ResumeLayout = ({name,age,gender,description,img,verified,id,onDownload,onStop,deleteCard,editCard,dispatch}) => {
   const [playing,setplaying]=useState(true);
   function handleClick(e){
     e.preventDefault();
@@ -28,7 +28,12 @@ const ResumeLayout = ({name,age,gender,description,img,verified,id,onDownload,on
         <br />
 
 
-          <button className='flex bg-black rounded-md text-white m-2 p-2 justify-center items-center text-center mt-3' onClick={handleClick}>Download</button>
+          <div className='flex'> 
+          <button className='flex bg-black rounded-md w-1/2 text-white m-2 p-2 justify-center items-center text-center mt-3' onClick={handleClick}>Download</button>
+
+          <button className='flex bg-black rounded-md text-white m-2 p-2 justify-center items-center text-center mt-3' onClick={()=>editCard(id)}>Edit</button>
+          <button className='flex bg-black rounded-md text-white m-2 p-2 justify-center items-center text-center mt-3' onClick={()=> dispatch({type:'DELETE',payload:id})}>Delete</button>
+          </div>
         </div>
 
       

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import me from '../assets/me.jpg'
 const initialState={
   name:'',
@@ -6,7 +6,7 @@ const initialState={
   description:'',
   img: me,
 }
-const ResumeForm = ({ ButtonName,onAdd}) => {
+const ResumeForm = ({ ButtonName,onAdd,editableCard,updateCard}) => {
   const [card,setCard]=useState(initialState)
   // function handleClick(e) {
   //   e.preventDefault();
@@ -16,8 +16,14 @@ const ResumeForm = ({ ButtonName,onAdd}) => {
 
   function handleSubmit(e){
     e.preventDefault();
-    onAdd(card)
-    setCard()
+    if(editableCard){
+      updateCard(card)
+    }
+    else{
+
+      onAdd(card)
+    }
+    setCard(initialState)
     // console.log(card)
 
   }
@@ -29,6 +35,13 @@ const ResumeForm = ({ ButtonName,onAdd}) => {
     })
     
   }
+  useEffect(()=>{
+    // console.log("object")
+    if(editableCard){
+
+      setCard(editableCard)
+    }
+  },[editableCard])
 
   return (
     <div>
@@ -38,15 +51,15 @@ const ResumeForm = ({ ButtonName,onAdd}) => {
 
           <div className='mb-4'>
             <label className='block text-gray-700 font-bold' >Name</label>
-            <input type="text" name="name"  className='appearance-none leading-tight focus:outline-none focus:shadow-outline border rounded w-full py-2 px-3' onChange={handleChange} placeholder='Enter your Full name' />
+            <input type="text" name="name" value={card.name}  className='appearance-none leading-tight focus:outline-none focus:shadow-outline border rounded w-full py-2 px-3' onChange={handleChange} placeholder='Enter your Full name' />
           </div>
           <div className='mb-4'>
             <label className='block text-gray-700 font-bold'>Age</label>
-            <input type="number" name="age" className='appearance-none leading-tight focus:outline-none focus:shadow-outline border rounded w-full py-2 px-3'  onChange={handleChange} placeholder='Enter your age' />
+            <input type="number" name="age" value={card.age} className='appearance-none leading-tight focus:outline-none focus:shadow-outline border rounded w-full py-2 px-3'  onChange={handleChange} placeholder='Enter your age' />
           </div>
           <div className='mb-4'>
             <label className='block text-gray-700 font-bold' >Gender</label>
-            <select name="gender" onChange={handleChange} className='appearance-none leading-tight focus:outline-none focus:shadow-outline border rounded w-full py-2 px-3'>
+            <select name="gender" value={card.gender} onChange={handleChange} className='appearance-none leading-tight focus:outline-none focus:shadow-outline border rounded w-full py-2 px-3'>
               <option value="">Male</option>
               <option value="">Female</option>
               <option value="">Others</option>
@@ -54,13 +67,13 @@ const ResumeForm = ({ ButtonName,onAdd}) => {
           </div>
           <div className='mb-4'>
             <label className='block text-gray-700 font-bold'>Description</label>
-            <textarea type="text" name="description" className='appearance-none leading-tight focus:outline-none focus:shadow-outline border rounded w-full py-2 px-3'  onChange={handleChange} placeholder='Tell Us about Yourself' />
+            <textarea type="text" name="description" value={card.description} className='appearance-none leading-tight focus:outline-none focus:shadow-outline border rounded w-full py-2 px-3'  onChange={handleChange} placeholder='Tell Us about Yourself' />
           </div>
           <button className='flex justify-center items-center bg-black text-white rounded-md p-2' 
           onClick={handleSubmit}
           
           >
-            {ButtonName}</button>
+            {editableCard?"Edit":"Submit"}</button>
         </form>
       </div>
     </div>
