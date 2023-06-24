@@ -18,7 +18,7 @@ const ResumeLayout = ({name,age,gender,description,img,verified,id,onDownload,on
   }
   return (
     <>
-    <div className='flex bg-gradient-to-r from-[#20002c] to-[#cbb4d4] p-4 max-w-xl rounded-md hover:scale-95 transition ease-in 0.5s'>
+    <div className='flex bg-black  p-4 max-w-xl rounded-md hover:scale-95 transition ease-in 0.5s '>
 
   
       <div className='flex bg-white  mx-auto rounded-md p-4 m-4'>

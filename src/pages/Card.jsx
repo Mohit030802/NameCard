@@ -1,8 +1,9 @@
-import React, { useReducer, useState } from 'react'
+import React, { useContext, useReducer, useState } from 'react'
 import CardForm from '../Components/CardForm'
 import CardLayout from '../Components/CardLayout'
 import me from '../assets/me.jpg'
 import cardDb from '../data/data'
+import ThemeContext from '../context/ThemeContext'
 const Resume = ({deleteCard,editCard,updateCard}) => {
   const [editableCard, setEditableCard] = useState(null)
   function cardReducer(cards,action){
@@ -53,10 +54,12 @@ const Resume = ({deleteCard,editCard,updateCard}) => {
     // setCards(newCard)
     // console.log(newCard)
   }
+  const themeContext=useContext(ThemeContext)
+  console.log({themeContext})
   return (
     
     <>
-      <div className='App'>
+      <div className={`App ${themeContext}`}>
 
         <CardForm ButtonName="Submit" onAdd={onAdd} editableCard={editableCard} updateCard={updateCard}/>
 
